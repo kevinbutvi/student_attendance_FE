@@ -1,8 +1,15 @@
 function dateFormatter(date) {
-  let isoStartDAte = date.toISOString();
-  const parts = isoStartDAte.split("T")[0].split("-");
-  isoStartDAte = `${parts[0]}-${parts[1]}-${parts[2]}`;
-  return isoStartDAte;
+  let isoDAte = date.toISOString();
+  const parts = isoDAte.split("T")[0].split("-");
+  isoDAte = `${parts[0]}-${parts[1]}-${parts[2]}`;
+  return isoDAte;
 }
 
-export default dateFormatter;
+function dateFormatterForUI(date) {
+  let isoDAte = date.toISOString();
+  const parts = isoDAte.split("T")[0].split("-");
+  isoDAte = `${parts[1]}-${parts[2]}-${parts[0]}`;
+  return isoDAte;
+}
+
+export { dateFormatter, dateFormatterForUI };

@@ -9,6 +9,7 @@ export default function StatusButton({ status }) {
   const colors = tokens(theme.palette.mode);
   return (
     <Box
+      data-testid={`statusButtonText-${status}`}
       width="60%"
       m="0 auto"
       p="5px"

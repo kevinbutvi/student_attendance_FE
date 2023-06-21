@@ -1,11 +1,14 @@
 import axios from "axios";
 
-import dateFormatter from "../utils/dateFormater";
+import { dateFormatter } from "../utils/dateFormater";
 
 const API = "http://localhost:8000";
 
-export const getStudentSummaryById = async (studenId) => {
-  const { data } = await axios.get(`${API}/student/${studenId}`);
+export const getStudentSummaryById = async (studenId, startDate, endDate) => {
+  const isoStartDAte = dateFormatter(startDate);
+  const isoEndDAte = dateFormatter(endDate);
+
+  const { data } = await axios.get(`${API}/student/${studenId}?start_date=${isoStartDAte}&end_date=${isoEndDAte}`);
   return data;
 };
 

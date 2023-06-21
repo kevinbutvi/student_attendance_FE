@@ -13,6 +13,7 @@ import StatusButton from "../../components/StatusButton";
 import MyErrorMessage from "../../components/MyErrorMessage";
 import CalendarSelector from "../../components/CalendarSelector";
 import Spinner from "../../components/Spinner";
+import MyModal from "../../components/MyModal";
 
 import { tokens } from "../../theme";
 import { getStudents } from "../../services/studentServices";
@@ -24,6 +25,7 @@ const StudentsList = () => {
     today.getMonth() - 1,
     today.getDate()
   );
+  const [dateError, setDateError] = useState();
   const [startDate, setStartDate] = useState(oneMonthAgo);
   const [endDate, setEndDate] = useState(today);
   const { data, error, refetch, isLoading, isFetching } = useQuery(
@@ -32,7 +34,12 @@ const StudentsList = () => {
   );
 
   const handleClick = () => {
-    refetch();
+    if (startDate > endDate) {
+      setDateError(true);
+    } else {
+      setDateError(false);
+      refetch();
+    }
   };
 
   const theme = useTheme();
@@ -81,7 +88,7 @@ const StudentsList = () => {
       },
       {
         field: "attendancePercentage",
-        headerName: "Attendance %",
+        headerName: "Attendance in Hs %",
         type: "number",
         headerAlign: "center",
         align: "center",
@@ -130,6 +137,7 @@ const StudentsList = () => {
                   variant="contained"
                   startIcon={<SearchIcon fontSize="small" />}
                   sx={{
+                    width: "100%",
                     backgroundColor: colors.blueAccent[400],
                     m: 1,
                     p: 0.75,
@@ -183,6 +191,12 @@ const StudentsList = () => {
             components={{ Toolbar: GridToolbar }}
           />
         </Box>
+        {dateError && (
+          <MyModal
+            title="Date Input Error"
+            description="END Date must be greater or Equal than START Date"
+          />
+        )}
       </Box>
     );
   }

@@ -5,7 +5,7 @@ import Box from "@mui/material/Stack";
 
 export default function MyErrorMessage({ errorMessage }) {
   return (
-    <Box sx={{ width: "100%" }} spacing={2}>
+    <Box data-testid="errorMessageTest" sx={{ width: "100%" }} spacing={2}>
       <Alert severity="error">
         <AlertTitle>Error Getting Students List</AlertTitle>
         Error Code: {errorMessage.code} - Error Detail: {errorMessage.message}

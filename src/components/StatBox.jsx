@@ -4,8 +4,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import ProgressCircle from "./ProgressCircle";
 
-const StatBox = ({ icon, attended, total, legend, unit }) => {
-  const percentage = Math.round((attended * 100) / total);
+const StatBox = ({ icon, attended, total, percentage, legend, unit }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 

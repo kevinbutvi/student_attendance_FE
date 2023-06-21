@@ -5,6 +5,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 export default function MyLoader() {
   return (
     <Box
+      data-testid="loaderTest"
       sx={{
         height: "80%",
         width: "80%",
